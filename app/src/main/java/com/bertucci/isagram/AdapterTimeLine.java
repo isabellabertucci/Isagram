@@ -3,7 +3,6 @@ package com.bertucci.isagram;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +12,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class AdapterTimeLine extends RecyclerView.Adapter<AdapterTimeLine.MyViewHolder> {
 
-    String data1[], data2[];
-    int images[];
+    ArrayList<Post> mListPost = new ArrayList<>();
     Context context;
     boolean doubleClick = false;
     boolean isLiked = false;
 
-    public AdapterTimeLine(Context ct, String s1[], String s2[], int img []) {
+    public AdapterTimeLine(Context ct, ArrayList<Post> listPost) {
         context = ct;
-        data1 = s1;
-        data2 = s2;
-        images = img;
+        mListPost = listPost;
     }
 
     @NonNull
@@ -39,10 +37,10 @@ public class AdapterTimeLine extends RecyclerView.Adapter<AdapterTimeLine.MyView
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onBindViewHolder(@NonNull final AdapterTimeLine.MyViewHolder holder, int position) {
-        holder.userName.setText(data1[position]);
-        holder.userNameDescription.setText(data1[position]);
-        holder.description.setText(data2[position]);
-        holder.imagePost.setImageResource(images[position]);
+        holder.userName.setText(mListPost.get(position).userName);
+        holder.userNameDescription.setText(mListPost.get(position).userName);
+        holder.description.setText(mListPost.get(position).description);
+        holder.imagePost.setImageResource(mListPost.get(position).imagePost);
         holder.imgLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,10 +71,10 @@ public class AdapterTimeLine extends RecyclerView.Adapter<AdapterTimeLine.MyView
 
     @Override
     public int getItemCount() {
-        return data1.length;
+        return mListPost.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView userName, description, userNameDescription;
         ImageView imagePost, imgLike;
 
