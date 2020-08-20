@@ -25,4 +25,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapterTimeLine);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
+    private void changeLike(boolean enable) {
+        if (enable) {
+
+        }
+    }
 }
